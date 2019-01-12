@@ -7,6 +7,7 @@ const {ObjectID}= require('mongodb');
 
 
 var app=express();
+const port = process.env.PORT || 3000;
 //
 // var newTodo = new Todo({text:'cook dinner BOI'});
 //
@@ -65,14 +66,35 @@ app.get('/todos/:id',(req,res)=>{
       console.log('error');
     });
 
+});
 
+app.delete('/todos/:id',(req,res)=>{
+  var id = req.params.id;
+  var obj= new ObjectID (String(id));
+  console.log(id);
+  // res.send(id);
+  if (!ObjectID.isValid(id)){
+    return res.status(404).send('id not valid');
+    // console.log('id not valid');
+  }
 
+    Todo.findByIdAndRemove(id).then((todo)=>{
+      if (!todo) {
+        return res.status(404).send('todo not found');
+        // console.log('todo not found');
 
+      }
+      res.send({todo});
+      console.log('success');
+
+    }).catch((e)=>{
+      res.status(400).send();
+      console.log('error');
+    });
 
 });
 
 
-
- app.listen(3000,()=>{
-  console.log('started on port 3000');
+ app.listen(port,()=>{
+  console.log(`started on port ${port}`);
 });

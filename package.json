@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start":"node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines" : {
+    "node": "11.6.0"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +18,13 @@
     "mongoose": "^4.5.9"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlightnin/node_todo_api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dlightnin/node_todo_api/issues"
+  },
+  "homepage": "https://github.com/dlightnin/node_todo_api#readme",
   "description": ""
 }
